@@ -20,7 +20,7 @@ import org.robolectric.annotation.GraphicsMode
     qualifiers = RobolectricDeviceQualifiers.Pixel5,
     sdk = [34]
 )
-class MainActivityTest {
+class ShapeableViewHWRednerTest {
 
     init {
         // works with false or if add EmptyActivity to AndroidManifest.xml
@@ -36,7 +36,21 @@ class MainActivityTest {
     )
 
     @Test
-    fun shapeableImageTest() {
+    fun shapeableImageMacTest() {
+        shapeableTestTemplate()
+    }
+
+    @Test
+    fun shapeableImageUbuntuTest() {
+        shapeableTestTemplate()
+    }
+
+    @Test
+    fun shapeableImageWindowsTest() {
+        shapeableTestTemplate()
+    }
+
+    private fun shapeableTestTemplate() {
         val activityController = Robolectric.buildActivity(Activity::class.java).apply {
             get().window.setFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
@@ -60,5 +74,5 @@ class MainActivityTest {
     }
 }
 
-private const val COLT_COMPONENTS_REFERENCE_IMAGES_PATH = "src/test/assets/colt_components_refs"
+private const val COLT_COMPONENTS_REFERENCE_IMAGES_PATH = "src/test/assets/screenshot_tests_refs"
 private const val USE_HARDWARE_RENDERER_NATIVE_ENV = "robolectric.screenshot.hwrdr.native"
