@@ -1,9 +1,11 @@
 package tech.dalapenko.shapeablebug
 
 import android.app.Activity
-import android.view.WindowManager
 import android.widget.LinearLayout
+import com.dropbox.differ.SimpleImageComparator
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+import com.github.takahirom.roborazzi.RoborazziOptions
 import com.github.takahirom.roborazzi.RoborazziRule
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
@@ -20,28 +22,44 @@ import org.robolectric.annotation.GraphicsMode
     qualifiers = RobolectricDeviceQualifiers.Pixel5,
     sdk = [34]
 )
-class MainActivityTest {
+class ShapeableViewHWRednerTest {
 
     init {
         // works with false or if add EmptyActivity to AndroidManifest.xml
-        System.setProperty(USE_HARDWARE_RENDERER_NATIVE_ENV, "true")
+        System.setProperty(PIXEL_COPY_RENDER_MODE, "hardware")
     }
 
+    @ExperimentalRoborazziApi
     @get:Rule
     val roborazziRule = RoborazziRule(
         options = RoborazziRule.Options(
             outputDirectoryPath = COLT_COMPONENTS_REFERENCE_IMAGES_PATH,
-            outputFileProvider = (FileProvider::get)
+            outputFileProvider = (FileProvider::get),
+            roborazziOptions = RoborazziOptions(
+                compareOptions = RoborazziOptions.CompareOptions(
+                    imageComparator = SimpleImageComparator(maxDistance = 0.007F)
+                )
+            )
         )
     )
 
     @Test
-    fun shapeableImageTest() {
+    fun shapeableImageMacTest() {
+        shapeableTestTemplate()
+    }
+
+    @Test
+    fun shapeableImageUbuntuTest() {
+        shapeableTestTemplate()
+    }
+
+    @Test
+    fun shapeableImageWindowsTest() {
+        shapeableTestTemplate()
+    }
+
+    private fun shapeableTestTemplate() {
         val activityController = Robolectric.buildActivity(Activity::class.java).apply {
-            get().window.setFlags(
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
-            )
             get().setTheme(android.R.style.Theme_Translucent)
         }
         val activity = activityController.setup().get()
@@ -60,5 +78,5 @@ class MainActivityTest {
     }
 }
 
-private const val COLT_COMPONENTS_REFERENCE_IMAGES_PATH = "src/test/assets/colt_components_refs"
-private const val USE_HARDWARE_RENDERER_NATIVE_ENV = "robolectric.screenshot.hwrdr.native"
+private const val COLT_COMPONENTS_REFERENCE_IMAGES_PATH = "src/test/assets/screenshot_tests_refs"
+private const val PIXEL_COPY_RENDER_MODE = "robolectric.pixelCopyRenderMode"
