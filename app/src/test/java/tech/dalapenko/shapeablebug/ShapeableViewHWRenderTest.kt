@@ -22,7 +22,7 @@ import org.robolectric.annotation.GraphicsMode
     qualifiers = RobolectricDeviceQualifiers.Pixel5,
     sdk = [34]
 )
-class ShapeableViewHWRednerTest {
+class ShapeableViewHWRenderTest {
 
     init {
         // works with false or if add EmptyActivity to AndroidManifest.xml
