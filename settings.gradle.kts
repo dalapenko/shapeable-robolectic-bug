@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ShapeableRobolectic Bug"
+rootProject.name = "shapeable-robolectic-bug"
 include(":app")
  
