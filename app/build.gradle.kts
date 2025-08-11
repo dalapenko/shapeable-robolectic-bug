@@ -51,6 +51,7 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.15.1")
     testImplementation("io.github.takahirom.roborazzi:roborazzi:1.46.1")
     testImplementation("io.github.takahirom.roborazzi:roborazzi-junit-rule:1.46.1")
+    testImplementation("io.github.darkxanter:webp-imageio:0.3.3")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
 }
