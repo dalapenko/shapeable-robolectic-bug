@@ -42,7 +42,8 @@ class AlphaViewNoHWRenderTest {
                         maxDistance = 0.007F,
                         hShift = 2, // without this shift, the test fails on different OS
                         vShift = 2 // without this shift, the test fails on different OS
-                    )
+                    ),
+                    changeThreshold = 0.01f
                 )
             )
         )
