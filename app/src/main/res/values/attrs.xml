@@ -4,4 +4,8 @@
     <declare-styleable name="CoverView">
         <attr name="coverImage" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="TagView">
+        <attr name="android:text" />
+    </declare-styleable>
 </resources>

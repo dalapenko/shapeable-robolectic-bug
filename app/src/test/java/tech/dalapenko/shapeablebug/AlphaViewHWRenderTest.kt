@@ -71,10 +71,7 @@ class AlphaViewHWRenderTest {
 
         val viewGroup = LinearLayout(activity)
 
-        val view = AlphaTagView(activity).apply {
-            setText("Tag Value")
-            isTextInvisible(true)
-        }
+        val view = CoverWithTagView(activity)
 
         viewGroup.addView(view)
 

@@ -4,7 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
-import androidx.core.view.isInvisible
+import androidx.core.content.res.getStringOrThrow
+import androidx.core.content.withStyledAttributes
 import tech.dalapenko.shapeablebug.databinding.AlphaTagViewBinding
 
 class AlphaTagView @JvmOverloads constructor(
@@ -16,11 +17,15 @@ class AlphaTagView @JvmOverloads constructor(
     private val tagViewBinding =
         AlphaTagViewBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun setText(text: CharSequence?) {
-        tagViewBinding.textValue.text = text
+    init {
+        context.withStyledAttributes(attrs, R.styleable.TagView, defStyleAttr) {
+            runCatching {
+                getStringOrThrow(R.styleable.TagView_android_text)
+            }.getOrNull()?.let(::setText)
+        }
     }
 
-    fun isTextInvisible(invisible: Boolean) {
-        tagViewBinding.textValue.isInvisible = invisible
+    fun setText(text: CharSequence?) {
+        tagViewBinding.textValue.text = text
     }
 }
