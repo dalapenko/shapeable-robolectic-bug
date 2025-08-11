@@ -37,7 +37,11 @@ class ShapeableViewHWRenderTest {
             outputFileProvider = (FileProvider::get),
             roborazziOptions = RoborazziOptions(
                 compareOptions = RoborazziOptions.CompareOptions(
-                    imageComparator = SimpleImageComparator(maxDistance = 0.007F)
+                    imageComparator = SimpleImageComparator(
+                        maxDistance = 0.007F,
+                        hShift = 2, // without this shift, the test fails on different OS
+                        vShift = 2 // without this shift, the test fails on different OS
+                    )
                 )
             )
         )
