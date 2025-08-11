@@ -1,8 +1,9 @@
 package tech.dalapenko.shapeablebug
 
-import android.R
+import android.R as AndroidR
 import android.app.Activity
 import android.widget.LinearLayout
+import androidx.core.view.setPadding
 import com.dropbox.differ.SimpleImageComparator
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
@@ -66,7 +67,7 @@ class AlphaViewSimpleNoHWRenderTest {
 
     private fun testTemplate() {
         val activityController = Robolectric.buildActivity(Activity::class.java).apply {
-            get().setTheme(R.style.Theme_Translucent)
+            get().setTheme(AndroidR.style.Theme_Translucent)
         }
         val activity = activityController.setup().get()
 
@@ -74,11 +75,13 @@ class AlphaViewSimpleNoHWRenderTest {
 
         val contentGroup = LinearLayout(activity).apply {
             orientation = LinearLayout.VERTICAL
+            setBackgroundColor(tech.dalapenko.shapeablebug.R.color.alpha_bg_content)
         }
         repeat(3) { index ->
             contentGroup.addView(
                 AlphaTagView(activity).apply {
                     setText("TAG-$index")
+                    setPadding(10)
                 }
             )
         }
