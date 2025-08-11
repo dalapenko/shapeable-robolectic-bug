@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:contentPadding="4dp"
-    app:cardBackgroundColor="@color/alpha_bg_test"
+    app:cardBackgroundColor="@color/alpha_bg_tag"
     app:cardCornerRadius="4dp"
     app:cardElevation="0dp">
 

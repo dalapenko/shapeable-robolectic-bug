@@ -2,5 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="alpha_bg_test">#B3333436</color>
+    <color name="alpha_bg_tag">#B3333436</color>
+    <color name="alpha_bg_content">#1FFFFFFF</color>
 </resources>
