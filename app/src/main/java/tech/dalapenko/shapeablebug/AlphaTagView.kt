@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
+import androidx.core.view.isInvisible
 import tech.dalapenko.shapeablebug.databinding.AlphaTagViewBinding
 
 class AlphaTagView @JvmOverloads constructor(
@@ -17,5 +18,9 @@ class AlphaTagView @JvmOverloads constructor(
 
     fun setText(text: CharSequence?) {
         tagViewBinding.textValue.text = text
+    }
+
+    fun isTextInvisible(invisible: Boolean) {
+        tagViewBinding.textValue.isInvisible = invisible
     }
 }
